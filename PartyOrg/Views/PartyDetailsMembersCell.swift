@@ -209,8 +209,10 @@ class PartyDetailsMembersCell: UITableViewCell, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
             members.remove(at: indexPath.row)
+            delegate?.party(members: members)
             expandedTable()
-            delegate?.cell(expand: expanded, height: height)
+            tableMembers.reloadData()
+            delegate?.cell(expand: true, height: height)
         }
     }
 
